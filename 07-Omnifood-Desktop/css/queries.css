@@ -1,0 +1,376 @@
+/* We look where our screen starts to break-down with this large screen to small screen design principle and our devices to find our breakpoints for the maximun-width points. The design philosophy is to just monitor the entire characteristics of our page as we decrease the size and adjust as the primary way of setting media-queries and then checking smaller device views using the Google inspect tool. On our page we starte at 1500 pixels and started shrinking th page. Around 1300 (1344 is what we used.) is a good break-point. We should also not use pixels in media-queries but rem.Pixels will not adjust to the users font-size setting or zoom level. This is why the font-size for html is at 62.5% We too 10px / 16px in our original design to come up with 62.5 percent versus 10px. 16px is the defualt setting. rem and em do not depend on html font-size however in media queires. Instead, we assume the 1rem = 1em = 16px  rem is the root font-size ahd em is the parent font-size so we use em for media queries. Note: Be limited on media-queries. You do not need ten or twenty to fix every problem. A media quiery should work over a range of 200 to 300 pixels for a thumbnail guide for the breaks. */
+
+/* Also, if you have dual panes set for visual studio you can have queires.css on the right and general.css or style.css on the left and just paste as needed from the general or style to the queries as needed. */
+
+/* For the below break-point we used 1350px for our first breakpoint and divided it by 16. */
+
+/************************************/
+/* BELOW  1344px (smaller desktops) */
+/************************************/
+
+@media (max-width: 84em) {
+  .hero {
+    max-width: 120rem;
+  }
+
+  .heading-primary {
+    font-size: 4.4rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/*************************************/
+/* BELOW  1200px (landscape tablets) */
+/*************************************/
+
+/* A trick is if you want to make everything smaller you just have to change the html font-size that we have at 62.5%. Also these media querieis work only becuase we designed the web page in the beginning to be responsive. We desgined everything in rem so everything is changed by changing the one thing percent in html which the rem root goes by. Remeber that say for example 1.5em is 1.5 times the font size of its parent. */
+
+@media (max-width: 75em) {
+  html {
+    /* 9px / 16px is 56.25%. Even the containers are changed so pictures shrink also. */
+    font-size: 56.25%;
+  }
+
+  /* This is why we have font-sizes and system spacing chart. We just need to go down by one maybe at the most two using the char. */
+
+  .grid {
+    column-gap: 4.8rem;
+    row-gap: 6.4rem;
+  }
+
+  .heading-secondary {
+    font-size: 3.6rem;
+  }
+
+  .heading-tertiary {
+    font-size: 2.4rem;
+  }
+
+  .header {
+    padding: 0 3.2rem;
+  }
+
+  .main-nav-list {
+    gap: 3.2rem;
+  }
+
+  .hero {
+    gap: 4.8rem;
+  }
+
+  .testimonials-container {
+    padding: 9.6rem 3.2rem;
+  }
+}
+
+/*************************************/
+/******* BELOW  944px (Tablets)***** */
+/*************************************/
+
+@media (max-width: 59em) {
+  html {
+    /* 8px / 16px is 50%. */
+    font-size: 50%;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 0 3.2rem;
+    gap: 6.4rem;
+  }
+
+  /* An image is an inline element so it is also affected by text-align below. */
+
+  .hero-text-box .hero-img-box {
+    text-align: center;
+  }
+
+  .hero-img {
+    width: 60%;
+  }
+
+  .delivered-meals {
+    /* This is a flex-box so justify-content to center versus text-align. */
+
+    justify-content: center;
+    margin-top: 3.2rem;
+  }
+
+  .logos img {
+    height: 2.4rem;
+  }
+
+  .step-number {
+    font-size: 7.4rem;
+  }
+
+  .meal-content {
+    padding: 2.4rem 3.2rem 3.2rem 3.2rem;
+  }
+
+  .section-testimonials {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .cta {
+    /* 3/5 = 60% and 2/5 = 40% */
+    grid-template-columns: 3fr 2fr;
+  }
+
+  .cta-form {
+    grid-template-columns: 1fr;
+  }
+
+  .btn--form {
+    margin-top: 1.2rem;
+  }
+
+  /* MOBILE NAVIGATION */
+  .btn-mobile-nav {
+    display: block;
+    /* A higher z-index means that elements will be shown in front of other elements. */
+    z-index: 9999;
+  }
+
+  .main-nav {
+    background-color: rgba(255, 255, 255, 0.97);
+
+    /* Content behind an element is blured when using z-index. -webkit-backdrop-filter is so that it works in Safari. If background-color is high enough above, it will not be noticable. caniuse.com gives the vendor prefixes like -webkit- */
+
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(100%); /* x-axis */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-in;
+
+    /* Hide navigation. */
+    /* Allows no transitons at all. */
+    /* display: none; Opacity can be animated and opacity of 0 makes it invisible.*/
+    /* Hide the element visually */
+    opacity: 0;
+    /* Make it unacessible to mouse and keyboard because element is still on the page. It is just invisible. */
+    pointer-events: none;
+    /* Hide the element from screen readers. */
+    visibility: hidden;
+  }
+
+  /* This puts things back. Remember that we use JavaScript to do the nav-open in the index.html to toggle things back and forth. */
+
+  .nav-open .main-nav {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  .nav-open .icon-mobile-nav[name="close-outline"] {
+    display: block;
+  }
+
+  .nav-open .icon-mobile-nav[name="menu-outline"] {
+    display: none;
+  }
+
+  .main-nav-list {
+    flex-direction: column;
+    gap: 4.8rem;
+  }
+
+  .main-nav-link:link,
+  .main-nav-link:visited {
+    font-size: 3rem;
+  }
+}
+
+/**********************************************/
+/******* BELOW  700px (Smaller tablets) ******/
+/*********************************************/
+
+@media (max-width: 44em) {
+  .grid--3-cols,
+  .grid--4-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Center this item in the grid. */
+
+  .diets {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
+  .heading-secondary {
+    margin-bottom: 4.8rem;
+  }
+
+  .pricing-plan {
+    width: 100%;
+  }
+
+  .grid--footer {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .logo-col,
+  .address-col {
+    grid-column: span 3;
+  }
+
+  .nav-col {
+    grid-row: 1;
+    grid-column: span 2;
+    margin-bottom: 3.2rem;
+  }
+}
+
+/**********************************************/
+/************ BELOW  544px (Phones) **********/
+/*********************************************/
+
+/* - Font Sizes (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 */
+
+/* - Spacing System (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 */
+
+/* change three and four column grids to two for a max-width at 704px */
+
+@media (max-width: 34em) {
+  .grid {
+    row-gap: 4.8rem;
+  }
+  .grid--2-cols,
+  .grid--3-cols,
+  .grid--4-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .btn,
+  .btn:link,
+  .btn:visited {
+    padding: 2.4rem 1.6rem;
+  }
+
+  .section-hero {
+    padding: 2.4rem 0 6.4rem 0;
+  }
+
+  .hero {
+    padding: 0 3.2rem;
+  }
+
+  .hero-img {
+    width: 80%;
+  }
+
+  .logos img {
+    height: 1.2rem;
+  }
+
+  /* We put 2 becuase it is the second child of the container. It has nothing to do with the class name. */
+
+  .step-img-box:nth-child(2) {
+    grid-row: 1;
+  }
+
+  .step-img-box:nth-child(6) {
+    grid-row: 5;
+  }
+
+  /* transform: translate allows us to move items without affecting the things around them. */
+
+  .step-img-box {
+    transform: translateY(2.4px);
+  }
+
+  .testimonials {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+
+  .cta {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-text-box {
+    padding: 3.2rem;
+  }
+
+  /* Picture did not show becuase it did not have any height, and we moved it to be on top. */
+
+  .cta-img-box {
+    height: 32rem;
+    grid-row: 1;
+  }
+}
+
+/**********************************************/
+/**********  Fixing Safari flexbox gap  ******/
+/*********************************************/
+
+.no-flexbox-gap .main-nav-list li:not(:last-child) {
+  margin-right: 4.8rem;
+}
+
+.no-flexbox-gap .list-item:not(:last-child) {
+  margin-bottom: 1.6rem;
+}
+
+.no-flexbox-gap .list-icon:not(:last-child) {
+  margin-right: 1.6rem;
+}
+
+.no-flexbox-gap .delivered-faces {
+  margin-right: 1.6rem;
+}
+
+.no-flexbox-gap .meal-attribute:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.no-flexbox-gap .meal-icon {
+  margin-right: 1.6rem;
+}
+
+.no-flexbox-gap .footer-row div:not(:last-child) {
+  margin-right: 6.4rem;
+}
+
+.no-flexbox-gap .social-links li:not(:last-child) {
+  margin-right: 2.4rem;
+}
+
+.no-flexbox-gap .footer-nav li:not(:last-child) {
+  margin-bottom: 2.4rem;
+}
+
+@media (max-width: 75em) {
+  .no-flexbox-gap .main-nav-list li:not(:last-child) {
+    margin-right: 3.2rem;
+  }
+}
+
+@media (max-width: 59em) {
+  .no-flexbox-gap .main-nav-list li:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 4.8rem;
+  }
+}

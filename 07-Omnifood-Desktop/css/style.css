@@ -1,0 +1,767 @@
+/**************************/
+/* HEADER SECTION */
+/**************************/
+
+/* Notice that the hear is not a fixed width. This was by design for the logo section. */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fdf2e9;
+  /* We used height because we want it to be sticky later. We could have
+  used padding for top and bottom if we did not need it to be sticky. We did use padding for the right and left however. */
+  height: 9.6rem;
+  padding: 0 4.8rem;
+  position: relative;
+}
+
+.logo {
+  height: 2.2rem;
+}
+
+/**************************/
+/* NAVIGATION */
+/**************************/
+
+.main-nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 4.8rem;
+}
+
+.main-nav-link:link,
+.main-nav-link:visited {
+  /* Add inline-block so that we can add padding. */
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 1.8rem;
+  /* Remember to put the transition on the original state for delay. */
+  transition: all 0.3s;
+}
+
+.main-nav-link:hover,
+.main-nav-link:active {
+  color: #cf711f;
+}
+
+/* This is a call to action that will be used elsewhere. We did not use last-child since we will be using this a lot so gave it a class. */
+.main-nav-link.nav-cta:link,
+.main-nav-link.nav-cta:visited {
+  /* The .main-nav-link.nav-cta:link without the space is not a decendent class but it says that it needs both, increasing the specificity. With a specificity of 3 we know that the below will always apply. Both classes are used on the last child. */
+  padding: 1.2rem 2.4rem;
+  border-radius: 9px;
+  color: #fff;
+  background-color: #e67e22;
+}
+
+.main-nav-link.nav-cta:hover,
+.main-nav-link.nav-cta:active {
+  background-color: #cf711f;
+}
+
+/* This is navigation for mobile phones when the Nav bars get too small to show. Being in flexbox the menu bars and x are allgined as we like. */
+
+.btn-mobile-nav {
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: none;
+}
+
+.icon-mobile-nav {
+  height: 4.8rem;
+  width: 4.8rem;
+  color: #333;
+}
+
+/* 
+I am going to select using the name attribute for the button below using the square brackets.
+
+<button class="btn-mobile-nav">
+        <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+        <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+  </button> */
+
+.icon-mobile-nav[name="close-outline"] {
+  display: none;
+}
+
+/* STICKY NAVIGATION */
+.sticky .header {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 8rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: rgba(255, 255, 255, 0.97);
+  z-index: 999;
+  box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.03);
+}
+
+.sticky .section-hero {
+  margin-top: 9.6rem;
+}
+
+/**************************/
+/* HERO SECTION*/
+/**************************/
+
+.section-hero {
+  background-color: #fdf2e9;
+  /* Top and Bottom 9.6rem Left 
+  and Right 0rem */
+  padding: 4.8rem 0 9.6rem 0;
+}
+
+.hero {
+  max-width: 130rem;
+  margin: 0 auto;
+  /* Padding makes it so that the page does not hug the left and right side as we shrink the page. */
+  padding: 0 3.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9.6rem;
+  align-items: center;
+}
+
+.hero-discription {
+  font-size: 2rem;
+  line-height: 1.6;
+  margin-bottom: 4.8rem;
+}
+
+.hero-img {
+  width: 100%;
+}
+
+/* We did a new class here so we could reuse
+the other class somewhere else for the button and not have
+the marign happen. We also use important so that it is not
+overriden by something with more specificity. We can reuse this
+on all types of elements not just buttons so do not need
+the psuedo class of the buttons. We can drop this in for
+other things later. */
+
+.delivered-meals {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  margin-top: 8rem;
+}
+
+.delivered-imgs {
+  display: flex;
+}
+
+.delivered-imgs img {
+  height: 4.8rem;
+  /* There is a website with an error 
+  occuring so had to specify both 
+  height and width to work. Usually width is automatice
+  when specifying height. */
+  width: 4.8rem;
+  border-radius: 50%;
+  /* We wnted pictures to overlap each other. */
+  margin-right: -1.6rem;
+  /* Put border around pictures. Small detail that makes \
+  a difference. */
+  border: 3px solid #fdf2e9;
+}
+
+/* We have to set last child to zero 
+so that the gap of 1.6rem in 
+delivered-meals is shown. 
+This gap was countered by our 
+-1.6rem to make the pictures overlap. */
+.delivered-imgs img:last-child {
+  margin: 0;
+}
+
+.delivered-text {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.delivered-text span {
+  color: #cf711f;
+  font-weight: 700;
+}
+
+/**************************/
+/* FEATURED IN SECTION */
+/**************************/
+
+.section-featured {
+  padding: 4.8rem 0 3.2rem 0;
+}
+
+.heading-featured-in {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.75px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 2.4rem;
+  color: #888;
+}
+
+/* Make logos smaller and put them side by side. Images are already inline but with flexbox it is easy to space them. */
+
+.logos {
+  display: flex;
+  justify-content: space-around;
+  /* justify-content: space-between; */
+}
+
+/* Make logos smaller. */
+
+.logos img {
+  height: 3.2rem;
+  /* New property called filter to tone down the logos so they do not arract allo the attention. You can blur, grey shade, and a bunch of others. Opacity can tone it done to almost invisible if we like. 50% gives a grey also. */
+  filter: brightness(0);
+  opacity: 50%;
+}
+
+/**************************/
+/* HOW IT WORKS SECTION */
+/**************************/
+
+.section-how {
+  padding: 9.6px 0;
+}
+
+.step-number {
+  font-size: 8.6rem;
+  font-weight: 600;
+  color: #ddd;
+  margin-bottom: 1.2rem;
+}
+
+.step-description {
+  font-size: 1.8rem;
+  line-height: 1.8;
+}
+
+.step-img-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Placing psuedo element (circle) behind phones. This is done in CSS so do not have messy coded in html. We can not place element with image in html so we do it as a psuedo class. */
+
+.step-img-box::before,
+.step-img-box::after {
+  content: "";
+  display: block;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.step-img-box::before {
+  content: "";
+  display: block;
+  width: 60%;
+  /* Height: 60%; does not work in this case. So we use the below trick. We use padding-bottom instead of height. It means 60% of parent width. */
+  padding-bottom: 60%;
+  background-color: #fdf2e9;
+  /* We  use absolute to get it behind cell phone. */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* The below code moves it 50% of the actual colored square to center it on the cell phone. */
+  transform: translate(-50%, -50%);
+  /* z-index will put circle behind cell phone but it is confusing to use. Elements with higher z-index will be on top sp we reduce this z-index. We could have also used a postive z-index on the step-img but sometimes it does not work. */
+  z-index: -2;
+}
+
+.step-img-box::after {
+  width: 45%;
+  padding-bottom: 45%;
+  background-color: #fae5d3;
+  z-index: -1;
+}
+
+/* Without the width 30% by default the flex in the box above is set for stretch, which means the phone picture would go up and down the entire height of the box. The width sets the height proportionally with the width. */
+
+.step-img {
+  width: 35%;
+}
+
+/**************************/
+/* Meals Section */
+/**************************/
+
+.section-meals {
+  padding: 9.6px 0;
+}
+
+/* We create a shadow for the meal card since white on white background. */
+.meal {
+  box-shadow: 0 2.4rem 2.8rem rgba(0, 0, 0, 0.075);
+  border-radius: 11px;
+  /* Overflow hidden enables the picture to have a rounded corner on the top sides. The picture was square, over the rounded corners on top. */
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+/* You can use hover outside of a link. we then transform: translate for horizontal and vertical movement. translate y is just for up and down. Without Y it effects both horizonatl and vertical and you need two entries for horizontal and vertical movement. With Y we just have the one entry. We transition: all on .meal to give a slower transition rate. Bigger cards can have larger delay.The bigger the element the longer you can animate it. We also changed the box-shadow below to it gives a longer and lighter shadow to complement the vertical shift of the picture up. */
+
+.meal:hover {
+  /* transform: translateY(2rem, 2rem); */
+  transform: translateY(-1.2rem);
+  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
+}
+
+/* We need a different div container for the picture and the wording so the below padding works on the content of the card outside of the image. If padding was used above, it would shrink the picture. */
+
+.meal-content {
+  padding: 3.2rem 4.8rem 4.8rem 4.8rem;
+}
+
+.meal-tags {
+  margin-bottom: 1.2rem;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.2 rem;
+  text-transform: uppercase;
+  background-color: #51cf66;
+  color: #333;
+  /* Remember just use large value for border radius to get the shape you want on a long rectangle. */
+  border-radius: 100px;
+  font-weight: 600;
+}
+
+.tag--vegetarian {
+  background-color: #51cf66;
+}
+.tag--vegan {
+  background-color: #94d82d;
+}
+.tag--paleo {
+  background-color: #ffd43b;
+}
+
+.meal-title {
+  font-size: 2.4rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 3.2rem;
+}
+
+/* Set the below parent container to flex, so we can change to column for the main axis and use gap to seperate the bullet points. This is better than margin bottom, since we do not need to delete the last bullets margin bottom. The gap only occurs between the bullets. */
+.meal-attributes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.meal-attribute {
+  font-size: 1.8rem;
+  /* This is parent so flex so line up and center icons to text. */
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.meal-icon {
+  height: 2.4rem;
+  width: 2.4rem;
+  /* Experiement. Each item pack works differently. stroke and fill did not work, but color does. */
+  color: #e67e22;
+}
+
+.meal-img {
+  width: 100%;
+}
+
+.all-recipes {
+  height: 12.8rem;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+/**************************/
+/*  TESTIMONIALS SECTION  */
+/**************************/
+
+.section-testimonials {
+  background-color: #fdf2e9;
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  /* The below keeps pictures with the same gap between them when shrinking the page. */
+  align-items: center;
+}
+
+.testimonials-container {
+  /* This padding is on all four sides. */
+  padding: 9.6rem;
+}
+
+.testimonials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 4.8rem;
+  column-gap: 8rem;
+}
+.testimonial-img {
+  width: 6.4rem;
+  border-radius: 50%;
+  margin-bottom: 1.2rem;
+}
+
+.testimonial-text {
+  font-size: 1.8rem;
+  line-height: 1.8;
+  margin-bottom: 1.6rem;
+}
+
+.testimonial-name {
+  font-size: 1.6rem;
+  color: #6f6f6f;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+  /* Puts padding around all the pictures.This is the same spacing as the gap.*/
+  padding: 1.6rem;
+}
+
+.gallery-item {
+  /* This makes the pictures stay in the same frame when they become larger. Nice trick to remember. */
+  overflow: hidden;
+}
+
+/* Images are inline elements by default so you get a line between them. By changing them to block, you get rid of that. */
+.gallery-item img {
+  display: block;
+  /* Making width 100% takes the picture size down. */
+  width: 100%;
+  /* Make the transition of the pictures becoming larger, smooth. */
+  transition: all 0.4s;
+}
+
+/* For the below, we want the images to become slightly larger when we hover over them. */
+.gallery-item img:hover {
+  transform: scale(1.1);
+}
+
+/**************************/
+/* Pricing Section */
+/**************************/
+.section-pricing {
+  padding: 9.6px 0;
+}
+
+.pricing-plan {
+  border-radius: 11px;
+  /* The prcing plans take up the entire cell of each column of the grid since they are block items. so we do the below so that we can make them more narrow. */
+  width: 75%;
+  /* Now we need to center the items in each column and not each on the left. Justify is horizontal alignment.We do each seperately. princing-plan--starter on just the left column and take it to the end. The right column is already on the left, so both look centered. */
+}
+
+.pricing-plan--starter {
+  justify-self: end;
+  border: 2px solid #fdf2e9;
+  /* Adding th 2px boarder cuases a minor difference with the call to action button so we compensate with 4.6rem. .pricing-plan--complete has 4.8rem. */
+  padding: 4.6rem;
+}
+
+.pricing-plan--complete {
+  background-color: #fdf2e9;
+  padding: 4.8rem;
+  position: relative;
+  /* Cutoff overflow of Best Value is done on parent here. */
+  overflow: hidden;
+}
+
+/* Lets give a ribbon. */
+.pricing-plan--complete::after {
+  content: "Best Value";
+  position: absolute;
+  /* Use percent on top and right to keep it flexible. Use inspect on Google to play around with values until it works fine. You also might have to adjust the padding also below. */
+  top: 6%;
+  right: -18%;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 700;
+  background-color: #ffd43b;
+  padding: 0.8rem 8rem;
+  /* Rotate next. */
+  transform: rotate(45deg);
+}
+
+.pricing .plan-header {
+  text-align: center;
+  margin-bottom: 4.8rem;
+}
+
+.plan-name {
+  color: #cf711f;
+  font-weight: 600;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.75;
+  margin-bottom: 3.2rem;
+}
+
+.plan-price {
+  font-size: 6.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.6rem;
+}
+
+.plan-price span {
+  font-size: 3rem;
+  font-weight: 500;
+  margin-right: 0.8rem;
+}
+
+.plan-text {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #6f6f6f;
+}
+
+.plan-sign-up {
+  text-align: center;
+  margin-top: 4.8rem;
+}
+
+.plan-details {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.feature-icon {
+  color: #e67e22;
+  height: 3.2rem;
+  width: 3.2rem;
+  /* The below allows a circle around the icons. */
+  background-color: #fdf2e9;
+  padding: 1.6rem;
+  border-radius: 50%;
+  margin-bottom: 3.2rem;
+}
+
+.feature-title {
+  font-size: 2.4rem;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 1.6rem;
+}
+
+.feature-text {
+  font-size: 1.8rem;
+  line-height: 1.8;
+}
+
+/**************************/
+/*       CTA SECTION      */
+/**************************/
+
+/* We styl our own grid. */
+
+.section-cta {
+  /* top / right / bottom / left */
+  /* padding: 9.6rem 0 12.8rem 0; */
+
+  /* top / horizontal / left */
+  padding: 4.8rem 0 12.8rem;
+}
+/* We could be using flexbox but for the entire project we decided to use grid for the big stuff and flexbox for the small stuff. It is just a design choice. */
+
+/* We put a temporary height of 50rem into the below so that we can see what we are doing and look at the shadow. We are also using a gradient so that one side is darker. We used background-image: linear-gradient(90deg, red, #e67e22);. The degree is placed, will change the direction of the gradient. We can also use language like to right and it sould do the same thing as degree. We said to right bottom. We changed colors for final product but we started with a background color like orange and other colors for development. */
+
+.cta {
+  display: grid;
+  /* 2/3 = 66.6% and 1/3 = 33.3% */
+  grid-template-columns: 2fr 1fr;
+  /* background-color: #e67e22; */
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+  border-radius: 11px;
+
+  background-image: linear-gradient(to right bottom, #eb984e, #e67e22);
+  overflow: hidden;
+}
+
+.cta-text-box {
+  padding: 4.8rem 6.4rem 6.4rem 6.4rem;
+  color: #45260a;
+}
+
+.cta .heading-secondary {
+  /* color: #45260a; */
+  color: inherit;
+  margin-bottom: 3.2rem;
+}
+
+.cta-text {
+  font-size: 1.8rem;
+  line-height: 1.8;
+  margin-bottom: 4.8rem;
+}
+
+.cta-img-box {
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(235, 151, 78, 0.35),
+      rgba(230, 125, 34, 0.35)
+    ),
+    url("../img/eating.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.cta-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3.2rem;
+  row-gap: 2.4rem;
+}
+
+/* Use the parent and decendents to start styling each input for the form. The display block for each of the below places the label and the box on their own sperate line, one on top of the other. The 100% width makes them cover the full size of their parent. The inherit allows the font inside the input box to be inherited from the stated font-family from the parent element. This can be used for many situations. */
+
+.cta-form label {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+}
+
+.cta-form input,
+.cta-form select {
+  width: 100%;
+  padding: 1.2rem;
+  font-size: 1.8rem;
+  font-family: inherit;
+  color: inherit;
+  border: none;
+  background-color: #fdf2e9;
+  border-radius: 9px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Lightens the words in the input field. */
+
+.cta-form input::placeholder {
+  color: #aaa;
+}
+
+.cta *:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.8rem rgba(253, 242, 233, 0.5);
+}
+
+/* Added a box outline for the physically impaired that need to navigate using the keyboard instead of the mouse. */
+
+.cta *:focus {
+  outline: none;
+  box-shadow: inser 0 0 0 0.8rem rgba(252, 241, 232, 0.5);
+}
+
+/* The reason the button looked weird when I was first started doing the CTS was that the btn class did not have a css for it. The .btn had the addition of .btn:link, .btn:visited etc. So .btn had to be added to these to give it the desing characteristic that we wanted. */
+
+/**************************/
+/*     FOOTER SECTION     */
+/**************************/
+
+.footer {
+  padding: 12.8rem 0;
+  /* This is a line to cause a seperation for the footer section. Remember fff is the lightest. */
+  border-top: 1px solid #eee;
+}
+
+/* We want the copyright information to be at the bottom to give a gap to links for instagram, etc. so we create a flexbox below. Then in the .copyright we put margin-top: auto; */
+
+.grid--footer {
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
+}
+
+.logo-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-logo {
+  display: block;
+  margin-bottom: 3.2rem;
+}
+
+.social-links {
+  list-style: none;
+  display: flex;
+  gap: 2.4rem;
+}
+
+.social-icon {
+  height: 2.4rem;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.copyright {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: #767676;
+  margin-top: auto;
+}
+
+.footer-heading {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 4rem;
+}
+
+.contacts {
+  font-style: normal;
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+.address {
+  margin-bottom: 2.4rem;
+}
+
+.footer-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+/* There is a color heirarchy here in that the headings are #555 and the below color is lighter. */
+
+.footer-link:link,
+.footer-link:visited {
+  text-decoration: none;
+  font-size: 1.6rem;
+  color: #767676;
+  transition: all 0.3s;
+}
+
+.footer-link:hover,
+.footer-link:active {
+  color: #555;
+}

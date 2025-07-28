@@ -1,0 +1,326 @@
+/* 
+--- 01 TYPOGRAPHY SYSTEM
+
+- Font Sizes (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+- Font Weights
+Defualt: 400
+Medium: 500
+Semi-bold: 600
+Bold: 700
+
+- Line Heights
+Default: 1
+Small: 1.05
+Medium: 1.2 
+Paragraph default: 1.6
+Large: 1.8
+
+- Letter spacing
+-0.5px
+0.75px
+
+- Spacing System (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+--- 02 PRIMARY COLORS
+
+Primary" #e67e22
+
+- Tints: 
+#fdf2e9
+#fae5d3
+#eb984e
+- Shades: #cf711f
+- Accents:
+- Greys
+#888
+#767676 (Lighjtest grey allowed on #fff)
+#6f6f6f (lightesst grey allowed #fdf2e9)
+#555
+#333
+
+--- 03 IMAGES
+- Source is unsplash.com
+- uifaces.com
+
+--- 05 SHADOWS
+
+box-shadow: 0 2.4rem 2.8rem rgba(0, 0, 0, 0.075);
+
+--- 06 BORDER-RADIUS
+
+Default: 9px
+Medium: 11px
+
+--- 07 WHITESPACE
+
+
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* We want to have 10px so 10px/16px, 16px being the defualt html size we get 62.5%. This is
+  needed to allow users to change their font-size setting. So use percent for 10px. This
+  is used widely in the design community.So now 1 rem is 10px. */
+  font-size: 62.5%;
+  overflow-x: hidden;
+  /* We can also have smooth scrolling behavior with just html and css by putting the below for certain web browsers.Safari and Iphones is the one that does not work, but we can cause it to happen using JavaScript. */
+  /* scroll-behavior: smooth; */
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
+  /* Only works if there is nothing absolutely postioned in relation to body. */
+  overflow-x: hidden;
+}
+
+/*********************************/
+/* GENERAL REUSABLE COMPONENTS   */
+/*********************************/
+
+/* Creating a reusable grid for this project. */
+
+/* The function of the container is for centering the different sections. */
+
+.container {
+  /* 1140px is also used or 114rem. */
+  max-width: 120rem;
+  /* Padding so not on left corner on page. This 3.2rem by the way gives us close to 1140px due to the box-sizing code. */
+  padding: 0 3.2rem;
+  margin: 0 auto;
+  margin-top: 9.6rem;
+}
+
+.grid {
+  display: grid;
+  column-gap: 6.4rem;
+  row-gap: 9.6rem;
+  margin-bottom: 9.6rem;
+}
+
+/* margin-bottom 9.6rem; */
+
+/* .grid:last-child {
+  margin-bottom: 0;
+} */
+
+/* We are using the below instead of the above. They both work. Now we are adding it if it is only not the last-child. */
+
+.grid:not(:last-child) {
+  margin-bottom: 9.6rem;
+}
+
+.grid--2-cols {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3-cols {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--4-cols {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* .grid--5-cols {
+  grid-template-columns: repeat(5, 1fr);
+} */
+
+/* Centers item vertically in grid with this class. */
+.grid--center-v {
+  align-items: center;
+}
+
+/************************************/
+
+.heading-primary,
+.heading-secondary,
+.heading-tertiary {
+  font-weight: 700;
+  color: #333;
+  /* Alternate color */
+  /* color: #45260a; */
+  /* color: #343a40; */
+  letter-spacing: -0.5px;
+}
+
+.heading-primary {
+  font-size: 5.2rem;
+  line-height: 1.05;
+  margin-bottom: 3.2rem;
+}
+
+.heading-secondary {
+  font-size: 4.4rem;
+  line-height: 1.2;
+  margin-bottom: 9.6rem;
+}
+
+.heading-tertiary {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 3.2rem;
+}
+
+.subheading {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #cf711f;
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+  letter-spacing: 0.75px;
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+  display: inline-block;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 2rem;
+  /* Double the sides as on top and bottom. */
+  padding: 1.6rem 3.2rem;
+  border-radius: 9px;
+
+  /* Only necessary for .btn of the form. */
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  /* Want to animate the backgroud color 
+  and the color so say all and then 0.3 
+  second to cause a transtion after 
+  going over the button. Just putting background-color
+  would have worked also. The transition goes 
+  on the original state. */
+  /* transition: background-color 1s; */
+  /* transition: background-color 0.3s; */
+  /* transition: all 0.3s; is the one to always use over background color. */
+  transition: all 0.3s;
+}
+
+.btn--full:link,
+.btn--full:visited {
+  background-color: #e67e22;
+}
+
+.btn--full:hover,
+.btn--full:active {
+  background-color: #cf711f;
+}
+
+.btn--outline:link,
+.btn--outline:visited {
+  background-color: #fff;
+  color: #555;
+}
+
+.btn--outline:hover,
+.btn--outline:active {
+  background-color: #fdf2e9;
+  /* Tick to add border inside of button 
+  so do not use border but box shadow. 
+  No offset horizontal or vertical. No blur. 
+  Scale to 3px as in border. Make color white. 
+  Then put inset at front to add shadow 
+  to inside of the element. This was done so that 
+  it does not look like the button is jumping as when
+  using the border. */
+  /* border: 3px solid 3px; */
+  box-shadow: inset 0 0 0 3px #fff;
+}
+
+/* This is for the button on the form. */
+
+.btn--form {
+  background-color: #45260a;
+  color: #fdf2e9;
+  /* The button was tall because grid items will stretch to occupy the entire grid. So we do align-self: end; moves it down. By default the button has some padding so we change it to 1.2rem. */
+  align-self: end;
+  padding: 1.2rem;
+}
+
+.btn--form:hover {
+  background-color: #fff;
+  color: #555;
+}
+
+.link:link,
+.link:visited {
+  /* Need inline-block to use padding. */
+  display: inline-block;
+  color: #e67e22;
+  text-decoration: none;
+  /* Instead of text-decoration we use border to underline a link. currentColor takes the current text color. We could have also just put in the color. Helps if we change the color on the hover stage. Everyone does it like this.*/
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: all 0.3s;
+}
+
+.link:hover,
+.link:active {
+  /* currentColor causes the line to change also. Using transparent takes the underline away. Button does not jump due to change in size of not still having the border-bottom. */
+  color: #cf711f;
+  border-bottom: 1px solid transparent;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.list-item {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  line-height: 1.2;
+}
+
+.list-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #e67e22;
+}
+
+/* Each input and link has an accesibility outline around it or around the box that people that have to navigate with a keyboard uses. Many programmers disable it with the below by using just outline: none;, but we will not. Normally it is like an ugly blue line around like a border. Instead we can design something nicer after the outline: none;. This is below.The first gave a dotted line. */
+
+*:focus {
+  outline: none;
+  /* outline: 4px dotted #e67e22; */
+  /* outline-offset: 8px; */
+  box-shadow: 0 0 0 0.8rem rgba(230, 125, 34, 0.5);
+}
+
+/* HELPER/SETTINGS CLASSES */
+
+.margin-right-sm {
+  margin-right: 1.6rem !important;
+}
+
+.margin-bottom-md {
+  margin-bottom: 4.8rem !important;
+}
+
+.center-text {
+  text-align: center;
+}
+
+/* <strong> is to bold at 700 so a common practice is to change it as below for everything. */
+
+strong {
+  font-weight: 500;
+}
